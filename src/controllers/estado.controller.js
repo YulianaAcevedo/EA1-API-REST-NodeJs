@@ -59,7 +59,7 @@ const deleteestado = async (req, res) => {
 
 const updateestado = async (req, res) => {
     try {
-        const { id_EstadoEquipo } = req.params;
+        const { idEstadoEquipo } = req.params;
         const { nombre_EstadoEquipo, Estado_EstadoEquipo, FechaCreacion_EstadoEquipo, FechaActualizacion_EstadoEquipo} = req.body;
 
         if ( nombre_EstadoEquipo === undefined ||Estado_EstadoEquipo === undefined ||FechaCreacion_EstadoEquipo === undefined || FechaActualizacion_EstadoEquipo === undefined) {
@@ -67,7 +67,7 @@ const updateestado = async (req, res) => {
         }
         const EstadoEquipo = { nombre_EstadoEquipo, Estado_EstadoEquipo, FechaCreacion_EstadoEquipo, FechaActualizacion_EstadoEquipo};
         const connection = await getConnection();
-        const result = await connection.query("UPDATE EstadoEquipo SET ? WHERE id_EstadoEquipo = ?", [EstadoEquipo, id_EstadoEquipo]);
+        const result = await connection.query("UPDATE EstadoEquipo SET ? WHERE idEstadoEquipo = ?", [EstadoEquipo, idEstadoEquipo]);
         res.json(result);
     } catch (error) {
         res.status(500);
